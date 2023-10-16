@@ -24,7 +24,7 @@ const registerUser = async(req,res) =>{
         })
 
         if(newUser){
-            res.status(201).json({id: newUser._id, name: newUser.username})
+            res.status(201).json({message: "User registered successfully!"})
         } else {
             res.status(201).json({message: "user data not valid"})
         }
@@ -56,7 +56,12 @@ const loginUser = async(req,res) =>{
                     email :user.email
                 }
             }, process.env.ACCESS_TOKEN_SECRET, {expiresIn : "30m"})
-            res.status(200).json({accessToken})
+            res.status(200).json({
+                id: user.id,
+                username: user.username,
+                email :user.email,
+                accessToken
+            })
         }
 
 
